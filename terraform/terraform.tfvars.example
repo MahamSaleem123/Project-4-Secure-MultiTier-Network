@@ -1,0 +1,10 @@
+project_name = "Project4-Secure-Network"
+environment  = "dev"
+admin_cidr   = "x.x.x.x/32"
+http_allowed_cidr = "0.0.0.0/0"
+instance_type_web = "t2.micro"
+instance_type_app = "t2.micro"
+instance_type_bastion = "t2.micro"
+web_count = 1
+app_count = 1
+key_name = "your-keypair"
