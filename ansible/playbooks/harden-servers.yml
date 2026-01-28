@@ -1,0 +1,8 @@
+---
+- name: Harden all Linux servers
+  hosts: all
+  gather_facts: yes
+  become: yes
+
+  roles:
+    - hardening

@@ -1,0 +1,14 @@
+---
+- name: Configure application servers
+  hosts: tier_app
+  gather_facts: yes
+  roles:
+    - app
+
+- name: Configure Nginx reverse proxy on web tier
+  hosts: tier_web
+  gather_facts: yes
+  roles:
+    - nginx-reverse-proxy
+
+

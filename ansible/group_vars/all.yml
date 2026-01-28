@@ -1,0 +1,5 @@
+ssh_permit_root_login: "no"
+ssh_password_authentication: "no"
+
+app_port: 8080
+nginx_app_port: 8080

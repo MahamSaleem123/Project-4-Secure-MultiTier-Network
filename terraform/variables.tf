@@ -1,6 +1,11 @@
+variable "ami" {
+  type = string
+}
+
+
 variable "region" {
   type    = string
-  default = "me-central-1"
+  default = "us-east-1"
 }
 
 variable "project_name" {
@@ -45,5 +50,9 @@ variable "app_count" {
 }
 
 variable "key_name" {
+  type = string
+}
+
+variable "existing_vpc_id" {
   type = string
 }

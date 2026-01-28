@@ -9,3 +9,8 @@ variable "admin_cidr" {
 variable "app_port" {
   type = number
 }
+
+
+variable "http_allowed_cidr" {
+  type = string
+}

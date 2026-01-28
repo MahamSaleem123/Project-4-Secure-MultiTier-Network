@@ -1,0 +1,40 @@
+---
+- name: Create deployer user
+  user:
+    name: deployer
+    groups: sudo
+    append: yes
+    shell: /bin/bash
+    create_home: yes
+
+- name: Create .ssh directory
+  file:
+    path: /home/deployer/.ssh
+    state: directory
+    owner: deployer
+    group: deployer
+    mode: '0700'
+
+- name: Add authorized key for deployer
+  authorized_key:
+    user: deployer
+    state: present
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+- name: Copy hardened sshd_config
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: '0600'
+  notify: restart ssh
+
+- name: Install common packages
+  apt:
+    name:
+      - vim
+      - curl
+      - git
+    state: present
+    update_cache: yes

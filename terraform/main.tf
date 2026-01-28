@@ -3,43 +3,48 @@ provider "aws" {
 }
 
 module "network" {
-  source = "./modules/network"
-
+  source   = "./modules/network"
   vpc_cidr = "10.0.0.0/16"
-  project  = var.project_name
-  env      = var.environment
+
+  project     = var.project_name
+  environment = var.environment
+
+  public_subnet_cidrs    = ["10.0.1.0/24", "10.0.2.0/24"]
+  private_subnet_cidrs   = ["10.0.11.0/24", "10.0.12.0/24"]
+  management_subnet_cidr = "10.0.50.0/24"
+  azs                    = ["us-east-1a", "us-east-1b"]
 }
+
 
 module "security" {
-  source = "./modules/security"
-
-  vpc_id         = module.network.vpc_id
-  admin_cidr    = var.admin_cidr
-  app_port      = var.app_port
-  http_cidr     = var.http_allowed_cidr
+  source            = "./modules/security"
+  vpc_id            = module.network.vpc_id
+  admin_cidr        = var.admin_cidr
+  app_port          = var.app_port
+  http_allowed_cidr = var.http_allowed_cidr
 }
+
 
 module "compute" {
   source = "./modules/compute"
 
-  vpc_id           = module.network.vpc_id
-  public_subnets   = module.network.public_subnets
-  private_subnets  = module.network.private_subnets
-  management_subnet = module.network.management_subnet
+  # Networking
+  public_subnet_ids    = module.network.public_subnet_ids
+  private_subnet_ids   = module.network.private_subnet_ids
+  management_subnet_id = module.network.management_subnet_id
 
-  web_sg     = module.security.web_sg
-  app_sg     = module.security.app_sg
-  bastion_sg = module.security.bastion_sg
+  # Security Groups
+  web_sg_id     = module.security.web_sg_id
+  app_sg_id     = module.security.app_sg_id
+  bastion_sg_id = module.security.bastion_sg_id
 
-  web_count = var.web_count
-  app_count = var.app_count
+  # EC2
+  ami           = var.ami
+  instance_type = var.instance_type_app
+  key_name      = var.key_name
 
-  web_type     = var.instance_type_web
-  app_type     = var.instance_type_app
-  bastion_type = var.instance_type_bastion
-
-  key_name = var.key_name
-
-  project = var.project_name
-  env     = var.environment
+  # Meta
+  project     = var.project_name
+  environment = var.environment
 }
+

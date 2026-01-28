@@ -1,0 +1,32 @@
+---
+- name: Collect logs for evidence
+  hosts: all
+  gather_facts: yes
+  vars:
+    ssh_log_path: "/var/log/auth.log"
+    nginx_access_log: "/var/log/nginx/access.log"
+    nginx_error_log: "/var/log/nginx/error.log"
+
+  tasks:
+    - name: Fetch SSH log file
+      ansible.builtin.fetch:
+        src: "{{ ssh_log_path }}"
+        dest: "../docs/logs/{{ inventory_hostname }}/"
+        flat: no
+      ignore_errors: yes
+
+    - name: Fetch Nginx access log (web tier only)
+      ansible.builtin.fetch:
+        src: "{{ nginx_access_log }}"
+        dest: "../docs/logs/{{ inventory_hostname }}/"
+        flat: no
+      when: "'tier_web' in group_names"
+      ignore_errors: yes
+
+    - name: Fetch Nginx error log (web tier only)
+      ansible.builtin.fetch:
+        src: "{{ nginx_error_log }}"
+        dest: "../docs/logs/{{ inventory_hostname }}/"
+        flat: no
+      when: "'tier_web' in group_names"
+      ignore_errors: yes

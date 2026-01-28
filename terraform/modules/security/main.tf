@@ -6,17 +6,14 @@ resource "aws_security_group" "bastion" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [var.admin_cidr]
+    cidr_blocks = [var.http_allowed_cidr]
   }
 
   egress {
-    from_port = 22
-    to_port   = 22
-    protocol  = "tcp"
-    security_groups = [
-      aws_security_group.web.id,
-      aws_security_group.app.id
-    ]
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
@@ -28,7 +25,7 @@ resource "aws_security_group" "web" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.http_allowed_cidr]
   }
 
   ingress {
@@ -39,10 +36,10 @@ resource "aws_security_group" "web" {
   }
 
   egress {
-    from_port       = var.app_port
-    to_port         = var.app_port
-    protocol        = "tcp"
-    security_groups = [aws_security_group.app.id]
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
@@ -71,3 +68,4 @@ resource "aws_security_group" "app" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+

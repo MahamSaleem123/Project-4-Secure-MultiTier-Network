@@ -13,3 +13,4 @@ output "private_subnet_ids" {
 output "management_subnet_id" {
   value = aws_subnet.management.id
 }
+

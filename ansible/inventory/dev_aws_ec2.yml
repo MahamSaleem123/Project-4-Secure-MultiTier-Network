@@ -1,0 +1,17 @@
+plugin: aws_ec2
+regions:
+  - us-east-1
+
+filters:
+  tag:Project: "Project4-Secure-Network"
+  tag:Environment: "dev"
+
+keyed_groups:
+  - key: tags.Tier
+    prefix: tier
+
+hostnames:
+  - private-ip-address
+
+compose:
+  ansible_host: private_ip_address

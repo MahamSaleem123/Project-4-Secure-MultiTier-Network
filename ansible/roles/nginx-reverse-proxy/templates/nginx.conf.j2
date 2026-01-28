@@ -1,0 +1,21 @@
+events {}
+
+http {
+    upstream app_backend {
+        {% for host in groups['tier_app'] %}
+        server {{ host }}:8080;
+        {% endfor %}
+    }
+
+    server {
+        listen 80;
+
+        location / {
+            proxy_pass http://app_backend;
+        }
+
+        location /health {
+            return 200 "OK";
+        }
+    }
+}
