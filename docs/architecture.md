@@ -27,3 +27,4 @@ This project implements a secure three-tier architecture on AWS using Terraform 
 - Security Groups follow least privilege
 - SSH access only via Bastion
 - Application not exposed to the internet
+
