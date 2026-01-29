@@ -1,7 +1,7 @@
 # Secure Multi-Tier Architecture
 
 ## Architecture Diagram
-![Architecture Diagram](architecture.png)
+![Architecture Diagram](architecture.png.svg)
 
 ## Overview
 This project implements a secure three-tier architecture on AWS using Terraform and Ansible.
@@ -27,4 +27,5 @@ This project implements a secure three-tier architecture on AWS using Terraform 
 - Security Groups follow least privilege
 - SSH access only via Bastion
 - Application not exposed to the internet
+
 
