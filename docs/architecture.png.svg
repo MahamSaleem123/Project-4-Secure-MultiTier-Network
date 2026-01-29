@@ -1,0 +1,151 @@
+<svg viewBox="0 0 1200 1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Simple arrow markers -->
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#374151" />
+    </marker>
+    <marker id="arrowDashed" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#6B7280" />
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="1000" fill="#FFFFFF"/>
+  
+  <!-- External User Box -->
+  <rect x="450" y="30" width="280" height="70" rx="4" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="2"/>
+  <text x="590" y="60" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="600" fill="#111827">External User / Client</text>
+  <text x="590" y="82" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#6B7280">(Web Browser)</text>
+  
+  <!-- Arrow: External → VPC -->
+  <line x1="590" y1="100" x2="590" y2="165" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="610" y="135" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#374151">HTTP (80)</text>
+  
+  <!-- AWS VPC Container -->
+  <rect x="60" y="180" width="840" height="750" rx="6" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="2.5"/>
+  <text x="480" y="210" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="17" font-weight="600" fill="#111827">AWS VPC (10.0.0.0/16)</text>
+  
+  <!-- Horizontal divider lines -->
+  <line x1="80" y1="430" x2="880" y2="430" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="8,4"/>
+  <line x1="80" y1="680" x2="880" y2="680" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="8,4"/>
+  
+  <!-- PUBLIC SUBNET -->
+  <rect x="90" y="245" width="390" height="165" rx="4" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="1.5"/>
+  <text x="285" y="270" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="600" fill="#374151">Public Subnet (Web Tier)</text>
+  
+  <!-- EC2 Web Server -->
+  <rect x="120" y="290" width="330" height="100" rx="3" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="285" y="312" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="600" fill="#111827">EC2 Web Server</text>
+  <line x1="140" y1="322" x2="430" y2="322" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="140" y="342" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#4B5563">• Nginx Reverse Proxy</text>
+  <text x="140" y="362" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#4B5563">• Port 80 open</text>
+  <text x="140" y="382" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#4B5563">• Public IP enabled</text>
+  
+  <!-- Arrow: Internet → Web -->
+  <line x1="590" y1="180" x2="420" y2="290" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="530" y="230" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="500" fill="#374151">HTTP 80</text>
+  
+  <!-- Arrow: Web → App -->
+  <line x1="285" y1="410" x2="285" y2="485" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="305" y="450" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#374151">HTTP 8080</text>
+  
+  <!-- PRIVATE SUBNET -->
+  <rect x="90" y="495" width="390" height="165" rx="4" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="1.5"/>
+  <text x="285" y="520" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="600" fill="#374151">Private Subnet (App Tier)</text>
+  <text x="285" y="537" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#6B7280">(No Public IP)</text>
+  
+  <!-- EC2 App Server -->
+  <rect x="120" y="550" width="330" height="90" rx="3" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="285" y="572" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="600" fill="#111827">EC2 App Server</text>
+  <line x1="140" y1="582" x2="430" y2="582" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="140" y="602" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#4B5563">• Application running</text>
+  <text x="140" y="622" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#4B5563">• Port 8080</text>
+  
+  <!-- MANAGEMENT SUBNET -->
+  <rect x="90" y="695" width="390" height="210" rx="4" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="1.5"/>
+  <text x="285" y="720" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="600" fill="#374151">Management Subnet</text>
+  
+  <!-- Bastion Host -->
+  <rect x="120" y="740" width="330" height="145" rx="3" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="285" y="762" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="600" fill="#111827">Bastion Host</text>
+  <line x1="140" y1="772" x2="430" y2="772" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="140" y="792" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#4B5563">• SSH access only</text>
+  <text x="140" y="812" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#4B5563">• Single entry point</text>
+  <text x="140" y="832" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#4B5563">• Jump box for admin access</text>
+  
+  <!-- Small lock icon (text) -->
+  <text x="420" y="870" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" fill="#6B7280">🔒</text>
+  
+  <!-- Arrow: Admin → Bastion -->
+  <line x1="30" y1="812" x2="115" y2="812" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrowDashed)"/>
+  <text x="35" y="798" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="500" fill="#6B7280">SSH 22</text>
+  <text x="35" y="810" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#9CA3AF">(Admin IP)</text>
+  
+  <!-- Arrow: Bastion → Web (dashed) -->
+  <line x1="285" y1="740" x2="285" y2="390" stroke="#6B7280" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowDashed)"/>
+  <text x="250" y="565" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="500" fill="#6B7280">SSH 22</text>
+  
+  <!-- Arrow: Bastion → App (dashed) -->
+  <line x1="320" y1="740" x2="320" y2="640" stroke="#6B7280" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowDashed)"/>
+  <text x="330" y="690" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="500" fill="#6B7280">SSH 22</text>
+  
+  <!-- SECURITY GROUPS PANEL -->
+  <rect x="510" y="245" width="370" height="660" rx="4" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="1.5"/>
+  <text x="695" y="275" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="600" fill="#111827">Security Groups (Least Privilege)</text>
+  
+  <!-- Web SG -->
+  <rect x="530" y="295" width="330" height="155" rx="3" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.5"/>
+  <text x="695" y="318" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#111827">Web SG</text>
+  <line x1="545" y1="328" x2="845" y2="328" stroke="#E5E7EB" stroke-width="1"/>
+  
+  <text x="545" y="348" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#4B5563">Inbound:</text>
+  <text x="545" y="368" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6B7280">• HTTP 80 from Internet (0.0.0.0/0)</text>
+  <text x="545" y="385" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6B7280">• SSH 22 only from Bastion SG</text>
+  
+  <text x="545" y="408" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#4B5563">Outbound:</text>
+  <text x="545" y="428" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6B7280">• HTTP 8080 to App SG</text>
+  <text x="545" y="445" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6B7280">• All outbound (internet access)</text>
+  
+  <!-- App SG -->
+  <rect x="530" y="470" width="330" height="145" rx="3" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.5"/>
+  <text x="695" y="493" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#111827">App SG</text>
+  <line x1="545" y1="503" x2="845" y2="503" stroke="#E5E7EB" stroke-width="1"/>
+  
+  <text x="545" y="523" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#4B5563">Inbound:</text>
+  <text x="545" y="543" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6B7280">• Port 8080 only from Web SG</text>
+  <text x="545" y="560" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6B7280">• SSH 22 only from Bastion SG</text>
+  
+  <text x="545" y="583" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#4B5563">Outbound:</text>
+  <text x="545" y="603" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6B7280">• Database access (if needed)</text>
+  
+  <!-- Bastion SG -->
+  <rect x="530" y="635" width="330" height="105" rx="3" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.5"/>
+  <text x="695" y="658" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#111827">Bastion SG</text>
+  <line x1="545" y1="668" x2="845" y2="668" stroke="#E5E7EB" stroke-width="1"/>
+  
+  <text x="545" y="688" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#4B5563">Inbound:</text>
+  <text x="545" y="708" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6B7280">• SSH 22 only from Admin IP</text>
+  <text x="545" y="725" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6B7280">  (e.g., 203.0.113.5/32)</text>
+  
+  <!-- Key Principles Box -->
+  <rect x="530" y="760" width="330" height="130" rx="3" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.5"/>
+  <text x="695" y="783" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#111827">🔒 Key Security Principles</text>
+  <line x1="545" y1="793" x2="845" y2="793" stroke="#E5E7EB" stroke-width="1"/>
+  
+  <text x="545" y="813" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6B7280">✓ Deny by default</text>
+  <text x="545" y="833" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6B7280">✓ Least privilege access model</text>
+  <text x="545" y="853" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6B7280">✓ No direct internet to App Tier</text>
+  <text x="545" y="873" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#6B7280">✓ All SSH access via Bastion only</text>
+  
+  <!-- Important Note Banner -->
+  <rect x="60" y="945" width="840" height="45" rx="4" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+  <text x="480" y="972" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="500" fill="#92400E">⚠️  NO direct connection from Internet to App Server - Application tier is fully isolated from external access</text>
+  
+  <!-- Legend -->
+  <text x="80" y="935" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#6B7280">Legend:</text>
+  <line x1="125" y1="930" x2="160" y2="930" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="165" y="934" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#6B7280">HTTP Traffic</text>
+  
+  <line x1="245" y1="930" x2="280" y2="930" stroke="#6B7280" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowDashed)"/>
+  <text x="285" y="934" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#6B7280">SSH Traffic</text>
+</svg>
