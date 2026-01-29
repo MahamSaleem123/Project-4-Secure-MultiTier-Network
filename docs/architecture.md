@@ -1,7 +1,7 @@
 # Secure Multi-Tier Architecture
 
 ## Architecture Diagram
-![Architecture Diagram](architecture.p)
+![Architecture Diagram](architecture.png)
 
 ## Overview
 This project implements a secure three-tier architecture on AWS using Terraform and Ansible.
